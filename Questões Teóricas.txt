@@ -1,0 +1,83 @@
+Questões Teóricas:
+
+Q1.
+
+Estratégia da Máquina
+Análise das Escolhas do Jogador:
+
+A máquina pode começar monitorando as escolhas anteriores do jogador (par ou ímpar) e tentar identificar padrões. Por exemplo, se o jogador tende a escolher mais "par", a máquina pode ajustar sua estratégia para tirar proveito disso.
+Escolha Aleatória Inicial:
+
+Na primeira rodada ou em rodadas onde não há padrão claro, a máquina pode escolher aleatoriamente entre "par" e "ímpar" para garantir que não seja previsível.
+Adaptação ao Comportamento do Jogador:
+
+Com o tempo, a máquina pode começar a ajustar suas escolhas com base no comportamento do jogador. Por exemplo, se o jogador parece alternar entre "par" e "ímpar" de forma previsível, a máquina pode escolher o oposto da última escolha do jogador.
+Engano Tático:
+
+A máquina pode ocasionalmente escolher de forma aleatória, mesmo que tenha identificado um padrão no comportamento do jogador. Isso impede que o jogador preveja a estratégia da máquina e se adapte.
+Reforço de Padrões de Sucesso:
+
+Se a máquina perceber que uma determinada estratégia (como escolher sempre o oposto do jogador) está funcionando bem, ela pode continuar a usar essa estratégia até que o jogador mude seu padrão.
+Simulação de Inteligência
+Simulação de Inteligência: A "inteligência" da máquina nesse contexto não é real, mas sim uma simulação baseada em probabilidades, padrões e aleatoriedade controlada. A máquina não "pensa", mas segue regras programadas que a fazem parecer estar jogando de forma inteligente.
+Conclusão
+A inteligência da máquina no jogo de par ou ímpar se basearia em uma combinação de escolhas aleatórias, análise de padrões e adaptações táticas. Ao simular uma resposta inteligente e imprevisível, a máquina pode manter o jogo equilibrado e desafiador para o jogador.
+
+Q2.
+
+Estratégia da Máquina
+Escolha Aleatória Simples:
+
+Abordagem Básica: A forma mais simples de programar a máquina é fazer com que ela escolha pedra, papel ou tesoura aleatoriamente. Isso garante que a máquina não seja previsível e mantenha as chances de ganhar, perder ou empatar equilibradas.
+Implementação: Usar uma função de geração de números aleatórios para escolher entre as três opções com igual probabilidade.
+Análise de Padrões do Jogador:
+
+Identificação de Padrões: Se o jogo for jogado várias vezes, a máquina pode analisar as escolhas anteriores do jogador para identificar padrões. Por exemplo, se o jogador tende a escolher pedra mais frequentemente após uma vitória, a máquina pode ajustar suas escolhas com base nesse padrão.
+Adaptação: A máquina pode usar algoritmos simples para ajustar sua estratégia, como escolher a opção que vence a última escolha do jogador com base em padrões detectados.
+Estratégia de Jogador Simulado (ou “Meta-Jogo”):
+
+Simulação do Comportamento do Jogador: A máquina pode simular que está “pensando” como um jogador humano. Se o jogador também está tentando identificar padrões, a máquina pode escolher aleatoriamente, tentando confundir o jogador e tornar seus próprios padrões imprevisíveis.
+Jogada do Oponente: A máquina pode às vezes adotar uma estratégia que tenta antecipar o próximo movimento do jogador com base em uma suposição de como o jogador pode estar tentando se antecipar à máquina.
+Algoritmos de Aprendizado Simples:
+
+Aprendizado de Máquina Básico: Embora mais avançado, a máquina pode usar algoritmos de aprendizado simples para ajustar sua estratégia com base no desempenho passado. Por exemplo, ela pode aumentar a probabilidade de escolher uma opção que teve sucesso em rodadas anteriores.
+
+Q3.
+
+Representação da Árvore de Decisão:
+
+Nós da Árvore: Cada nó da árvore representa um estado do tabuleiro. Os filhos de um nó representam os estados possíveis após uma jogada.
+Profundidade da Árvore: A profundidade da árvore depende do número de jogadas que você deseja prever. Uma profundidade maior permite uma análise mais profunda, mas também exige mais tempo de computação.
+Algoritmo MinMax:
+
+Objetivo: O objetivo do algoritmo MinMax é encontrar a melhor jogada possível, assumindo que o oponente também está jogando da melhor maneira possível.
+Maximização e Minimização:
+Nível Máximo (Max): No nível do jogador da máquina, a IA tenta maximizar sua pontuação. A máquina escolhe a jogada que leva ao melhor resultado possível para ela, considerando que o oponente jogará da melhor forma para minimizá-la.
+Nível Mínimo (Min): Nos níveis do oponente, a IA tenta minimizar a pontuação do jogador. O algoritmo assume que o oponente escolherá a jogada que reduz o potencial da máquina.
+Função de Avaliação:
+
+Objetivo: Avaliar a qualidade de um estado final do tabuleiro. Pode ser uma função que retorna um valor positivo se o estado for vantajoso para a máquina, negativo se for vantajoso para o oponente, e zero se for neutro.
+Exemplo de Função de Avaliação: Contar o número de sequências de 2, 3 e 4 peças conectadas no tabuleiro para a máquina e para o oponente. A soma desses valores pode ser usada para avaliar o estado do tabuleiro.
+Algoritmo Passo a Passo:
+
+Gerar Árvore de Decisão:
+
+A partir do estado atual do tabuleiro, gerar todos os possíveis estados futuros com base nas jogadas válidas.
+Aplicar MinMax:
+
+Função MinMax: Recursivamente, para cada possível estado futuro (nó filho), aplicar MinMax para determinar o valor do estado
+
+Escolher Melhor Jogada:
+
+A máquina escolhe a jogada que leva ao estado com o melhor valor calculado pelo MinMax.
+
+Lógica de Jogada da Máquina
+Gerar Estados Futuros:
+
+A máquina gera todos os possíveis estados futuros do tabuleiro com base nas jogadas válidas.
+Aplicar Função MinMax:
+
+Para cada estado futuro, a máquina aplica a função MinMax para calcular o valor do estado, considerando a jogada do oponente.
+Escolher a Melhor Jogada:
+
+A máquina escolhe a jogada que leva ao estado com o melhor valor, maximizando suas chances de ganhar enquanto minimiza as chances do oponente.
