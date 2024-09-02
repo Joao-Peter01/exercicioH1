@@ -1,0 +1,112 @@
+1. Implementar a Estratégia de Pontuação
+
+function calcularPontuacao(tabuleiro: string[][], linha: number, coluna: number, jogador: string): number {
+    let pontuacao = 0;
+    const adversario = jogador === 'X' ? 'O' : 'X';
+
+    // +2 pontos para a posição central
+    if (linha === 1 && coluna === 1) {
+        pontuacao += 2;
+    }
+
+    // +1 ponto para as posições nos quatro cantos
+    if ((linha === 0 || linha === 2) && (coluna === 0 || coluna === 2)) {
+        pontuacao += 1;
+    }
+
+    // -2 pontos se já houver uma ou mais peças do adversário na mesma linha, coluna ou diagonal
+    if (linhaOuColunaOuDiagonalOcupada(tabuleiro, linha, coluna, adversario)) {
+        pontuacao -= 2;
+    }
+
+    // +4 pontos se a posição impedir a vitória do adversário
+    if (impedeVitoria(tabuleiro, linha, coluna, adversario)) {
+        pontuacao += 4;
+    }
+
+    // +4 pontos se a posição levar à vitória
+    if (levaAVitoria(tabuleiro, linha, coluna, jogador)) {
+        pontuacao += 4;
+    }
+
+    return pontuacao;
+}
+
+function linhaOuColunaOuDiagonalOcupada(tabuleiro: string[][], linha: number, coluna: number, adversario: string): boolean {
+    // Verifica se a linha, coluna ou diagonal da posição está ocupada pelo adversário
+    // Implementação específica depende da lógica do jogo
+}
+
+function impedeVitoria(tabuleiro: string[][], linha: number, coluna: number, adversario: string): boolean {
+    // Verifica se colocar uma peça nesta posição impediria o adversário de vencer
+    // Implementação específica depende da lógica do jogo
+}
+
+function levaAVitoria(tabuleiro: string[][], linha: number, coluna: number, jogador: string): boolean {
+    // Verifica se colocar uma peça nesta posição levaria o jogador à vitória
+    // Implementação específica depende da lógica do jogo
+}
+
+
+
+2. Implementação do Algoritmo MinMax
+
+function minimax(tabuleiro: string[][], profundidade: number, isMaximizing: boolean, jogador: string): number {
+    const adversario = jogador === 'X' ? 'O' : 'X';
+    const pontuacao = avaliar(tabuleiro, jogador);
+
+    if (pontuacao === 10 || pontuacao === -10) {
+        return pontuacao;
+    }
+
+    if (tabuleiroCheio(tabuleiro)) {
+        return 0;
+    }
+
+    if (isMaximizing) {
+        let melhor = -Infinity;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (tabuleiro[i][j] === '') {
+                    tabuleiro[i][j] = jogador;
+                    melhor = Math.max(melhor, minimax(tabuleiro, profundidade + 1, false, jogador));
+                    tabuleiro[i][j] = '';
+                }
+            }
+        }
+        return melhor;
+    } else {
+        let melhor = Infinity;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (tabuleiro[i][j] === '') {
+                    tabuleiro[i][j] = adversario;
+                    melhor = Math.min(melhor, minimax(tabuleiro, profundidade + 1, true, jogador));
+                    tabuleiro[i][j] = '';
+                }
+            }
+        }
+        return melhor;
+    }
+}
+
+function melhorMovimento(tabuleiro: string[][], jogador: string): { linha: number, coluna: number } {
+    let melhorVal = -Infinity;
+    let melhorMov = { linha: -1, coluna: -1 };
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (tabuleiro[i][j] === '') {
+                tabuleiro[i][j] = jogador;
+                const movVal = minimax(tabuleiro, 0, false, jogador);
+                tabuleiro[i][j] = '';
+
+                if (movVal > melhorVal) {
+                    melhorMov = { linha: i, coluna: j };
+                    melhorVal = movVal;
+                }
+            }
+        }
+    }
+    return melhorMov;
+}
